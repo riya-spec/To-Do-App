@@ -1,4 +1,4 @@
-let todoList = [];
+let todoList = ["buy milk", "learn js"];
 displayItems();
 function addTodo() {
   let inputElement = document.querySelector("#todo-input");
@@ -12,9 +12,17 @@ function addTodo() {
 }
 
 function displayItems() {
-  let displayElements = document.querySelector("#todo-items");
-  displayElements.innerText = " ";
+  let containerElement = document.querySelector(".todo-container");
+
+  let newHtml = "";
+
   for (let i = 0; i < todoList.length; i++) {
-    displayElements.innerText = displayElements.innerText + "\n" + todoList[i];
+    newHtml += `
+    <div>
+    <span>${todoList[i]}</span>
+    <button onclick="todoList.splice(${i}, 1); displayItems();">Delete</button> 
+    </div>
+    `;
   }
+  containerElement.innerHTML = newHtml;
 }
